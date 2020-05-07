@@ -19,8 +19,8 @@ CREATE TABLE game
 	number_of_players int NOT NULL,
 	lib_policies int NOT NULL default(0),
 	fash_policies int NOT NULL default(0),
-  president_id int NOT NULL,
-  chancellor_id int
+  president varchar(255) NOT NULL,
+  chancellor varchar(255)
 );
 
 CREATE TABLE users_game
