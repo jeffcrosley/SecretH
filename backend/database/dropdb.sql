@@ -7,5 +7,5 @@ SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = 'secreth'
 
 DROP DATABASE secreth;
 
-DROP USER capstone_owner;
-DROP USER capstone_appuser;
+DROP USER jeffcrosley;
+DROP USER dbuser;

@@ -4,6 +4,7 @@ import auth from './auth'
 import Home from './views/Home.vue'
 import Login from './views/Login.vue'
 import Register from './views/Register.vue'
+import NewGame from './views/NewGame.vue'
 
 Vue.use(Router)
 
@@ -42,6 +43,14 @@ const router = new Router({
       component: Register,
       meta: {
         requiresAuth: false
+      }
+    },
+    {
+      path: "/newGame",
+      name: "newGame",
+      component: NewGame,
+      meta: {
+        requiresAuth: true
       }
     },
   ]
