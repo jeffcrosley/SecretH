@@ -1,11 +1,6 @@
 package com.techelevator.controller;
 
-import com.techelevator.authentication.AuthProvider;
-import com.techelevator.authentication.UnauthorizedException;
-import com.techelevator.model.Game;
-import com.techelevator.model.GameDao;
-import com.techelevator.model.User;
-import com.techelevator.model.UserDao;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.techelevator.authentication.AuthProvider;
+import com.techelevator.authentication.UnauthorizedException;
+import com.techelevator.model.Game;
+import com.techelevator.model.GameDao;
+import com.techelevator.model.User;
+import com.techelevator.model.UserDao;
 
 /**
  * ApiController
@@ -51,10 +53,16 @@ public class ApiController {
     /*CREATE A NEW GAME*/
     @PostMapping("/game/{creatorId}")
     @ResponseStatus(HttpStatus.CREATED)
-    public String createGame(@RequestBody Game game, @PathVariable long creatorId) {
+    public String createGame(@RequestBody Game game, @PathVariable Long creatorId) {
         gameDao.createGame(creatorId, game.getName(), game.getNumberOfPlayers());
         return "{\"success\":true}";
     }    
+    
+    /*GET ALL GAMES*/
+    @GetMapping("/allGames")
+    public List<Game> allGames() {
+    	return gameDao.getAllGames();
+    }
 
     
     

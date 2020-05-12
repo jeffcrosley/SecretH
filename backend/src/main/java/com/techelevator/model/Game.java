@@ -3,49 +3,60 @@ package com.techelevator.model;
 public class Game {
     
     private String name;
-    private int numberOfPlayers;
-    private int sheepPolicies;
-    private int wolfPolicies;
-    private String president;
-    private String chancellor;
-    
+    private Integer numberOfPlayers;
+    private Long sheepPolicies;
+    private Long wolfPolicies;
+    private Long president;
+    private Long chancellor;
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getNumberOfPlayers() {
+
+	public Integer getNumberOfPlayers() {
 		return numberOfPlayers;
 	}
-	public void setNumberOfPlayers(int numberOfPlayers) {
+
+	public void setNumberOfPlayers(Integer numberOfPlayers) {
 		this.numberOfPlayers = numberOfPlayers;
 	}
-	public int getSheepPolicies() {
+
+	public Long getSheepPolicies() {
 		return sheepPolicies;
 	}
-	public void setSheepPolicies(int sheepPolicies) {
+
+	public void setSheepPolicies(Long sheepPolicies) {
 		this.sheepPolicies = sheepPolicies;
 	}
-	public int getWolfPolicies() {
+
+	public Long getWolfPolicies() {
 		return wolfPolicies;
 	}
-	public void setWolfPolicies(int wolfPolicies) {
+
+	public void setWolfPolicies(Long wolfPolicies) {
 		this.wolfPolicies = wolfPolicies;
 	}
-	public String getPresident() {
+
+	public Long getPresident() {
 		return president;
 	}
-	public void setPresident(String president) {
+
+	public void setPresident(Long president) {
 		this.president = president;
 	}
-	public String getChancellor() {
+
+	public Long getChancellor() {
 		return chancellor;
 	}
-	public void setChancellor(String chancellor) {
+
+	public void setChancellor(Long chancellor) {
 		this.chancellor = chancellor;
 	}
-	
+
 	public Game() {
 
 	}    

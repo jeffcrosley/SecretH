@@ -1,7 +1,10 @@
 package com.techelevator.model;
 
+import java.util.List;
+
 public interface GameDao {
 
-	public void createGame(long creatorId, String name, int numberOfPlayers);
+	public List<Game> getAllGames();
+	public void createGame(Long creatorId, String name, Integer numberOfPlayers);
 	
 }
