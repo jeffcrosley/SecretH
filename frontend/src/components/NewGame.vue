@@ -1,6 +1,6 @@
 <template>
   <div id="new-game">
-    <h1>Create a New Game</h1>
+    <h2>Create a New Game</h2>
     <form class="form" @submit.prevent="createGame">
       <div class="form-group">
         <label for="name" class="label">Game Name</label>
