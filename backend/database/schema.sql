@@ -17,8 +17,8 @@ CREATE TABLE game
 	game_id serial PRIMARY KEY,
 	name varchar(64) NOT NULL,
 	number_of_players int NOT NULL,
-	lib_policies int NOT NULL default(0),
-	fash_policies int NOT NULL default(0),
+	sheep_policies int NOT NULL default(0),
+	wolf_policies int NOT NULL default(0),
   president varchar(255) NOT NULL,
   chancellor varchar(255)
 );

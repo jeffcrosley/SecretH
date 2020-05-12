@@ -4,8 +4,8 @@ public class Game {
     
     private String name;
     private int numberOfPlayers;
-    private int libPolicies;
-    private int fashPolicies;
+    private int sheepPolicies;
+    private int wolfPolicies;
     private String president;
     private String chancellor;
     
@@ -21,17 +21,17 @@ public class Game {
 	public void setNumberOfPlayers(int numberOfPlayers) {
 		this.numberOfPlayers = numberOfPlayers;
 	}
-	public int getLibPolicies() {
-		return libPolicies;
+	public int getSheepPolicies() {
+		return sheepPolicies;
 	}
-	public void setLibPolicies(int libPolicies) {
-		this.libPolicies = libPolicies;
+	public void setSheepPolicies(int sheepPolicies) {
+		this.sheepPolicies = sheepPolicies;
 	}
-	public int getFashPolicies() {
-		return fashPolicies;
+	public int getWolfPolicies() {
+		return wolfPolicies;
 	}
-	public void setFashPolicies(int fashPolicies) {
-		this.fashPolicies = fashPolicies;
+	public void setWolfPolicies(int wolfPolicies) {
+		this.wolfPolicies = wolfPolicies;
 	}
 	public String getPresident() {
 		return president;

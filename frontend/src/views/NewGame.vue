@@ -31,14 +31,18 @@
 <script>
 export default {
   name: 'create-game',
+  props: ['currentUser'],
   data() {
     return {
       game: {
-        organizer: this.$parent.currentUser.sub,
+        organizerId: null,
         name: '',
         numberOfPlayers: ''
       }
     }
+  },
+  created() {
+    this.organizerId = this.currentUser.id;
   },
   methods: {
     createGame() {

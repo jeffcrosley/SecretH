@@ -5,12 +5,13 @@
       <router-link to="/newGame">Create a New Game</router-link>
       <a v-on:click="logOut">Log Out</a>
     </div>
-    <router-view v-on:loggedIn="loggedIn"/>
+    <router-view v-on:loggedIn="loggedIn" v-bind:currentUser="currentUser"/>
   </div>
 </template>
 
 <script>
 import auth from './auth'
+import api from './api'
 
 export default {
   name: 'app',
@@ -21,7 +22,20 @@ export default {
   },
   methods: {
     loggedIn() {
-      this.currentUser = auth.getUser();
+
+      const username = auth.getUser().sub;
+      const authToken = auth.getToken();
+      const fetchConfigGet = api.fetchConfigGet(authToken);
+      
+      fetch(`${process.env.VUE_APP_REMOTE_API}/user/${username}`, fetchConfigGet
+      )
+      .then((response) => {
+        return response.json();
+      })
+      .then((currentUser) => {
+        this.currentUser = currentUser;
+      });
+
     },
     logOut() {
       auth.logout();
