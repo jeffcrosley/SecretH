@@ -29,24 +29,44 @@
 </template>
 
 <script>
+import auth from '../auth'
+import api from '../api'
+
 export default {
   name: 'create-game',
   props: ['currentUser'],
   data() {
     return {
       game: {
-        organizerId: null,
         name: '',
-        numberOfPlayers: ''
+        numberOfPlayers: 0
       }
     }
   },
-  created() {
-    this.organizerId = this.currentUser.id;
-  },
   methods: {
     createGame() {
+      const creatorId = this.currentUser.id;
+      console.log("creatorId = " + creatorId);
+      const authToken = auth.getToken();
+      const fetchConfig = api.fetchConfigPostNewGame(authToken);
       
+      fetch(`${process.env.VUE_APP_REMOTE_API}/game/${creatorId}`,             
+        { 
+          method: 'POST',
+          headers: {
+              Authorization: `Bearer ${authToken}`,
+              Accept: 'application/json',
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(this.game)
+        }
+      )
+      .then((response) => {
+        if (response.ok) {
+          this.$router.push({ path: '/lobby', query: { createGame: 'success' } });
+        }
+      })
+      .then((err) => console.error(err));
     }
   }
 }

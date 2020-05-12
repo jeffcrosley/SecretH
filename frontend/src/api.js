@@ -7,6 +7,18 @@ export default {
                 Authorization: `Bearer ${authToken}`
             }
         }
+    },
+
+    fetchConfigPostNewGame(authToken) {
+        return {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${authToken}`,
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(this.game)
+        }
     }
 
 }

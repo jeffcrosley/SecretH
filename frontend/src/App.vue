@@ -3,6 +3,7 @@
     <div id="nav">
       <router-link to="/">Home</router-link>
       <router-link to="/newGame">Create a New Game</router-link>
+      <router-link to="/lobby">Game Lobby</router-link>
       <a v-on:click="logOut">Log Out</a>
     </div>
     <router-view v-on:loggedIn="loggedIn" v-bind:currentUser="currentUser"/>
