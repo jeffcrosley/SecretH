@@ -19,7 +19,7 @@ CREATE TABLE game
 	number_of_players int NOT NULL,
 	sheep_policies int NOT NULL default(0),
 	wolf_policies int NOT NULL default(0),
-  president varchar(255) NOT NULL,
+  president varchar(255),
   chancellor varchar(255)
 );
 

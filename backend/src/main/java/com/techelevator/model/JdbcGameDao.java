@@ -2,10 +2,8 @@ package com.techelevator.model;
 
 import static java.lang.Math.toIntExact;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 import javax.sql.DataSource;
 
@@ -26,17 +24,16 @@ public class JdbcGameDao implements GameDao {
 
 	@Override
 	public void createGame(Long creatorId, String name, Integer numberOfPlayers) {
-		long presidentId = ThreadLocalRandom.current().nextInt(1, numberOfPlayers + 1);
 	    	
         String sqlInsertNewGame = "INSERT INTO game "
-                                    + "(name, number_of_players, president) "
-                                    + "VALUES (?, ?, ?) RETURNING game_id";
+                                    + "(name, number_of_players) "
+                                    + "VALUES (?, ?) RETURNING game_id";
         
         String sqlAddCurrentUserToNewGame = "INSERT INTO users_game "
                                             + "(user_id, game_id) "
                                             + "VALUES (?, ?)";
 
-        long gameId = jdbcTemplate.queryForObject(sqlInsertNewGame, Long.class, name, numberOfPlayers, presidentId);
+        long gameId = jdbcTemplate.queryForObject(sqlInsertNewGame, Long.class, name, numberOfPlayers);
         jdbcTemplate.update(sqlAddCurrentUserToNewGame, creatorId, gameId);
 
 	}

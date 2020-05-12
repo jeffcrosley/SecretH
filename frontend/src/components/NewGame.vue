@@ -65,6 +65,7 @@ export default {
       )
       .then((response) => {
         if (response.ok) {
+          this.$emit("newGame");
           this.$router.push({ path: '/lobby', query: { createGame: 'success' } });
         }
       })

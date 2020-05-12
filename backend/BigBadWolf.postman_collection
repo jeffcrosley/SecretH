@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "60865888-7d45-4fff-ab0e-15ddf17ad8cb",
-		"name": "SecretH",
+		"name": "BigBadWolf",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -35,7 +35,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"username\": {{username}},\n\t\"password\": {{password}}\n}",
+					"raw": "{\n\t\"username\": \"{{username}}\",\n\t\"password\": \"{{password}}\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -72,7 +72,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"username\": \"Batman\",\n    \"password\": \"martha\",\n    \"confirmPassword\": \"martha\",\n    \"role\": \"user\"\n}"
+					"raw": "{\n    \"username\": \"Superman\",\n    \"password\": \"martha\",\n    \"confirmPassword\": \"martha\",\n    \"role\": \"user\"\n}"
 				},
 				"url": {
 					"raw": "{{url}}/register",
@@ -81,6 +81,79 @@
 					],
 					"path": [
 						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user by username",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/user/{{username}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user",
+						"{{username}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "new game",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"{{gameName}}\",\n    \"numberOfPlayers\": {{numberOfPlayers}}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/game/{{userId}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"game",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "all games",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/allGames",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"allGames"
 					]
 				}
 			},
