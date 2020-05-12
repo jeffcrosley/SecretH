@@ -13,10 +13,12 @@
         />
       </div>
       <div class="form-group">
-        <label for="numberOfPlayer" class="label">Number of Players</label>
+        <label for="numberOfPlayer" class="label">Number of Players (5-10)</label>
         <input
         type="number"
         id="numberOfPlayers"
+        min=5
+        max=10
         v-model="game.numberOfPlayers"
         required
         />
