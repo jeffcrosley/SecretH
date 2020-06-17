@@ -2,6 +2,7 @@ package com.techelevator.model;
 
 public class Game {
     
+	private Long gameId;
     private String name;
     private Integer numberOfPlayers;
     private Long sheepPolicies;
@@ -9,6 +10,14 @@ public class Game {
     private Long president;
     private Long chancellor;
 
+	public Long getGameId() {
+		return gameId;
+	}
+
+	public void setGameId(Long gameId) {
+		this.gameId = gameId;
+	}        
+    
 	public String getName() {
 		return name;
 	}
@@ -59,5 +68,6 @@ public class Game {
 
 	public Game() {
 
-	}    
+	}
+
 }

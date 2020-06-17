@@ -37,6 +37,16 @@ public class JdbcGameDao implements GameDao {
         jdbcTemplate.update(sqlAddCurrentUserToNewGame, creatorId, gameId);
 
 	}
+
+	@Override
+	public void joinGame(Long gameId, Long userId) {
+		
+        String sqlAddUserToGame = "INSERT INTO users_game "
+                                  + "(user_id, game_id) "
+                                  + "VALUES (?, ?)";
+        
+        jdbcTemplate.update(sqlAddUserToGame, userId, gameId);
+	}
 	
 	@Override
 	public List<Game> getAllGames() {
@@ -90,6 +100,7 @@ public class JdbcGameDao implements GameDao {
     private Game mapRowSetToGame(SqlRowSet results) {
         Game theGame = new Game();
 
+        theGame.setGameId(results.getLong("game_id"));
         theGame.setName(results.getString("name"));
         theGame.setNumberOfPlayers(toIntExact(results.getLong("number_of_players")));
         theGame.setPresident(results.getLong("president"));

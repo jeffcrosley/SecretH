@@ -58,6 +58,14 @@ public class ApiController {
         return "{\"success\":true}";
     }    
     
+    /*JOIN A GAME*/
+    @PostMapping("/joinGame/{gameId}/{userId}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public String joinGame(@PathVariable Long gameId, @PathVariable Long userId) {
+	gameDao.joinGame(gameId, userId);
+    	return "{\"success\":true}";
+    }    
+    
     /*GET ALL GAMES*/
     @GetMapping("/allGames")
     public List<Game> allGames() {

@@ -32,7 +32,6 @@
 
 <script>
 import auth from '../auth'
-import api from '../api'
 
 export default {
   name: 'create-game',
@@ -50,7 +49,6 @@ export default {
       const creatorId = this.currentUser.id;
       console.log("creatorId = " + creatorId);
       const authToken = auth.getToken();
-      const fetchConfig = api.fetchConfigPostNewGame(authToken);
       
       fetch(`${process.env.VUE_APP_REMOTE_API}/game/${creatorId}`,             
         { 
