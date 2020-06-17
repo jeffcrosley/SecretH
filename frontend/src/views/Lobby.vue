@@ -2,7 +2,7 @@
   <div class="lobby">
     <h1>Game Lobby</h1>
     <new-game :currentUser="currentUser" @newGame="populateGames"></new-game>
-    <game-list title="Open Games" :currentUser="currentUser" :games="openGames"></game-list>
+    <game-list title="Open Games" :currentUser="currentUser" :games="openGames" @joinGame="populateGames"></game-list>
     <game-list title="Pending Games" :games="pendingGames"></game-list>
   </div>
 </template>
