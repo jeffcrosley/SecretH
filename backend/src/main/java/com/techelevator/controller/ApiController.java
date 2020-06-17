@@ -63,6 +63,18 @@ public class ApiController {
     public List<Game> allGames() {
     	return gameDao.getAllGames();
     }
+    
+    /*GET OPEN GAMES*/
+    @GetMapping("/openGames/{userId}")
+    public List<Game> openGames(@PathVariable Long userId) {
+    	return gameDao.getOpenGames(userId);
+    }
+    
+    /*GET PENDING GAMES*/
+    @GetMapping("/pendingGames/{userId}")
+    public List<Game> pendingGames(@PathVariable Long userId) {
+    	return gameDao.getPendingGames(userId);
+    }
 
     
     

@@ -37,7 +37,6 @@ public class JdbcGameDao implements GameDao {
         jdbcTemplate.update(sqlAddCurrentUserToNewGame, creatorId, gameId);
 
 	}
-
 	
 	@Override
 	public List<Game> getAllGames() {
@@ -52,6 +51,40 @@ public class JdbcGameDao implements GameDao {
 		}
 		
 		return allGames;
+	}
+	
+	public List<Game> getOpenGames(Long userId) {
+		List<Game> openGames = new ArrayList<Game>();
+		
+		String sqlGetOpenGames = "SELECT game.* "
+				+ "FROM game "
+				+ "INNER JOIN users_game ON (game.game_id = users_game.game_id) "
+				+ "WHERE users_game.user_id != ?";
+		
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetOpenGames, userId);
+		while(results.next()) {
+			Game theGame = mapRowSetToGame(results);
+			openGames.add(theGame);
+		}		
+		
+		return openGames;
+	}
+	
+	public List<Game> getPendingGames(Long userId) {
+		List<Game> pendingGames = new ArrayList<Game>();
+		
+		String sqlGetPendingGames = "SELECT game.* "
+									+ "FROM game "
+									+ "INNER JOIN users_game ON (game.game_id = users_game.game_id) "
+									+ "WHERE users_game.user_id = ?";
+		
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetPendingGames, userId);
+		while(results.next()) {
+			Game theGame = mapRowSetToGame(results);
+			pendingGames.add(theGame);
+		}		
+		
+		return pendingGames;
 	}
 	
     private Game mapRowSetToGame(SqlRowSet results) {

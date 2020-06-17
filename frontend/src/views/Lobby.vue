@@ -30,20 +30,25 @@ export default {
     populateGames() {
       const authToken = auth.getToken();
       const fetchConfigGet = api.fetchConfigGet(authToken);
+      const userId = this.currentUser.id;
 
-      fetch(`${process.env.VUE_APP_REMOTE_API}/allGames`, fetchConfigGet
+      fetch(`${process.env.VUE_APP_REMOTE_API}/pendingGames/${userId}`, fetchConfigGet
       )
       .then((response) => {
         return response.json();
       })
       .then((games) => {
-        console.log('games: ' + games);
-        const pendingGames = games.filter(game => game.president == 0);
-        const activeGames = games.filter(game => game.president != 0);
-
-        this.pendingGames = pendingGames;
-        this.activeGames = activeGames;
-      });      
+        this.pendingGames = games;
+      });
+      
+      fetch(`${process.env.VUE_APP_REMOTE_API}/openGames/${userId}`, fetchConfigGet
+      )
+      .then((response) => {
+        return response.json();
+      })
+      .then((games) => {
+        this.openGames = games;
+      });
     }
   },
   created() {
