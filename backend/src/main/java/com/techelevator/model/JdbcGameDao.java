@@ -66,10 +66,14 @@ public class JdbcGameDao implements GameDao {
 	public List<Game> getOpenGames(Long userId) {
 		List<Game> openGames = new ArrayList<Game>();
 		
-		String sqlGetOpenGames = "SELECT game.* "
-				+ "FROM game "
-				+ "INNER JOIN users_game ON (game.game_id = users_game.game_id) "
-				+ "WHERE users_game.user_id != ?";
+		String sqlGetOpenGames = "SELECT DISTINCT game.* "
+				+ "FROM users_game "
+				+ "LEFT OUTER JOIN game ON (users_game.game_id = game.game_id) "
+				+ "WHERE users_game.game_id NOT IN "
+					+ "(SELECT game_id "
+					+ "FROM users_game "
+					+ "WHERE user_id = ?) "
+				+ "ORDER BY game.game_id";
 		
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetOpenGames, userId);
 		while(results.next()) {
