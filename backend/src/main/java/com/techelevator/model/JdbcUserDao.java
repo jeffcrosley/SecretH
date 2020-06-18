@@ -134,4 +134,12 @@ public class JdbcUserDao implements UserDao {
         }
     }
 
+    @Override
+    public List<User> getUsersInGame(Long gameId) {
+        List<User> players = new ArrayList<User>();
+
+
+
+        return players;
+    }
 }

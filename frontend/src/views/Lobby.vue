@@ -30,6 +30,7 @@ export default {
     populateGames() {
       const authToken = auth.getToken();
       const fetchConfigGet = api.fetchConfigGet(authToken);
+      // THIS LINE IS THE ONE THAT'S MAKING THE TROUBLE
       const userId = this.currentUser.id;
 
       fetch(`${process.env.VUE_APP_REMOTE_API}/pendingGames/${userId}`, fetchConfigGet

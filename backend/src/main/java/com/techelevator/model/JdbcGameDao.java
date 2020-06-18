@@ -41,11 +41,27 @@ public class JdbcGameDao implements GameDao {
 	@Override
 	public void joinGame(Long gameId, Long userId) {
 		
+		// ADD USER TO GAME
         String sqlAddUserToGame = "INSERT INTO users_game "
                                   + "(user_id, game_id) "
                                   + "VALUES (?, ?)";
         
         jdbcTemplate.update(sqlAddUserToGame, userId, gameId);
+        
+		// CHECK IF ALL SLOTS ARE FILLED, START GAME IF YES 
+		Integer totalSeats = null;
+		String sqlGetTotalSeats = "SELECT number_of_players FROM game WHERE game_id = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetTotalSeats, gameId);
+		while (results.next()) {
+			totalSeats = (int) results.getLong("number_of_players");
+		}
+
+		Integer filledSeats = getPlayerIds(gameId).size();
+
+		if (totalSeats <= filledSeats) {
+			startGame(gameId);
+		}
+
 	}
 	
 	@Override
@@ -63,6 +79,7 @@ public class JdbcGameDao implements GameDao {
 		return allGames;
 	}
 	
+	@Override
 	public List<Game> getOpenGames(Long userId) {
 		List<Game> openGames = new ArrayList<Game>();
 		
@@ -84,6 +101,7 @@ public class JdbcGameDao implements GameDao {
 		return openGames;
 	}
 	
+	@Override
 	public List<Game> getPendingGames(Long userId) {
 		List<Game> pendingGames = new ArrayList<Game>();
 		
@@ -100,6 +118,53 @@ public class JdbcGameDao implements GameDao {
 		}		
 		
 		return pendingGames;
+	}
+	
+	private void startGame(Long gameId) {
+
+		// FIND PLAYERS IN THIS GAME AND ASSIGN A RANDOM ID TO THE PRESIDENT
+		Long presidentId = getPresidentId(gameId);
+
+		// ASSIGN A PRESIDENT
+		String sqlAssignPresident = "UPDATE game SET president = ? "
+									+ "WHERE game_id = ?";
+
+		jdbcTemplate.update(sqlAssignPresident, presidentId, gameId);
+
+		// TODO: ASSIGN SECRET ROLES
+		
+	}
+
+	private Long getPresidentId(Long gameId) {
+		Long presidentId = null;
+
+		List<Long> playerIds = getPlayerIds(gameId);
+		Integer numberOfPlayers = playerIds.size();
+		Integer idIndex = (int) (Math.random() * numberOfPlayers);
+		presidentId = playerIds.get(idIndex);
+
+		return presidentId;
+	}
+
+	private List<Long> getPlayerIds(Long gameId) {
+		List<Long> playerIds = new ArrayList<Long>();
+
+		String sqlGetAllUserIdsInGame = "SELECT DISTINCT users.id "
+										+ "FROM users_game "
+										+ "INNER JOIN users ON (users_game.user_id = users.id) "
+										+ "WHERE users_game.user_id IN "
+												+ "(SELECT user_id "
+												+ "FROM users_game "
+												+ "WHERE game_id = ?) "
+										+ "ORDER BY users.id";
+
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetAllUserIdsInGame, gameId);
+		while(results.next()) {
+			Long playerId = results.getLong("id");
+			playerIds.add(playerId);
+		}
+
+		return playerIds;
 	}
 	
     private Game mapRowSetToGame(SqlRowSet results) {
