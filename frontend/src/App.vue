@@ -5,7 +5,7 @@
       <router-link to="/lobby">Game Lobby</router-link>
       <a v-on:click="logOut">Log Out</a>
     </div>
-    <router-view @loggedIn="loggedIn" :currentUser="currentUser"/>
+    <router-view :currentUser="currentUser" @loggedIn="loggedIn"/>
     Icons made by <a href="http://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
   </div>
 </template>
@@ -18,7 +18,10 @@ export default {
   name: 'app',
   data() {
     return {
-      currentUser: null
+      currentUser: {
+        username: '',
+        id: ''
+      }
     }
   },
   methods: {
@@ -34,7 +37,8 @@ export default {
         return response.json();
       })
       .then((currentUser) => {
-        this.currentUser = currentUser;
+        this.currentUser.username = currentUser.username;
+        this.currentUser.id = currentUser.id;
       });
 
     },

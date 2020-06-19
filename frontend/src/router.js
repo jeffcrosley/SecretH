@@ -5,6 +5,7 @@ import Home from './views/Home.vue'
 import Login from './views/Login.vue'
 import Register from './views/Register.vue'
 import Lobby from './views/Lobby.vue'
+import Game from './views/Game.vue'
 
 Vue.use(Router)
 
@@ -49,6 +50,14 @@ const router = new Router({
       path: "/lobby",
       name: "lobby",
       component: Lobby,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/game/:gameId",
+      name: "game",
+      component: Game,
       meta: {
         requiresAuth: true
       }

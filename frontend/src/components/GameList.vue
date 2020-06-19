@@ -2,7 +2,7 @@
   <div class="game-list">
     <h2>{{this.title}}</h2>
     <div v-for="game in games" :key="game.name" class="game">
-      <p>{{game.name}}</p>
+      <router-link :to="{name: 'game', params: {gameId: game.gameId}}">{{game.name}}</router-link>      
       <button v-if="title == 'Open Games'" v-on:click="joinGame(game.gameId)">Join</button>
     </div>
   </div>
@@ -13,7 +13,7 @@ import auth from '../auth'
 
 export default {
   name: 'game-list',
-  props: ['currentUser', 'title', 'games'],
+  props: ['title', 'currentUser', 'games'],
   methods: {
     joinGame(gameId) {
       const userId = this.currentUser.id;

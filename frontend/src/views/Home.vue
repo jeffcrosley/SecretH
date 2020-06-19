@@ -4,7 +4,7 @@
     <p>Your name is {{currentUser.username}}</p>
     <p>You must be authenticated to see this</p>
     <p v-if="this.currentUser.role == 'admin'">You must be an administrator to see this</p>
-    <game-list title="Active Games" :games="activeGames"></game-list>
+    <game-list title="Active Games" :games="activeGames" :currentUser="currentUser"></game-list>
 
   </div>
 </template>
@@ -31,6 +31,7 @@ export default {
       const fetchConfigGet = api.fetchConfigGet(authToken);
       // THIS LINE IS THE ONE THAT'S MAKING THE TROUBLE
       const userId = this.currentUser.id;
+      console.log(userId);
 
       fetch(`${process.env.VUE_APP_REMOTE_API}/activeGames/${userId}`, fetchConfigGet
       )
@@ -43,8 +44,6 @@ export default {
     }
   },
   created() {
-    this.currentUser = this.$parent.currentUser;
-
     this.getActiveGames();
   }
 }
