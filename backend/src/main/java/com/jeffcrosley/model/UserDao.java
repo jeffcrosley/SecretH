@@ -1,4 +1,4 @@
-package com.techelevator.model;
+package com.jeffcrosley.model;
 
 import java.util.List;
 

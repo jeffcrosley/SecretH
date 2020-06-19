@@ -1,4 +1,4 @@
-package com.techelevator.authentication;
+package com.jeffcrosley.authentication;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

@@ -1,4 +1,4 @@
-package com.techelevator.authentication;
+package com.jeffcrosley.authentication;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -11,13 +11,13 @@ import static org.mockito.Mockito.when;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.techelevator.model.User;
-import com.techelevator.model.UserDao;
-
 import org.junit.Before;
-import org.junit.Test;
 import org.junit.FixMethodOrder;
+import org.junit.Test;
 import org.junit.runners.MethodSorters;
+
+import com.jeffcrosley.model.User;
+import com.jeffcrosley.model.UserDao;
 
 /**
  * RequestAuthProviderTest

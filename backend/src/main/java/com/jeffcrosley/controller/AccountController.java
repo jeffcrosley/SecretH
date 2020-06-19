@@ -1,12 +1,12 @@
-package com.techelevator.controller;
+package com.jeffcrosley.controller;
 
 import javax.validation.Valid;
 
-import com.techelevator.authentication.AuthProvider;
-import com.techelevator.authentication.JwtTokenHandler;
-import com.techelevator.authentication.UnauthorizedException;
-import com.techelevator.authentication.UserCreationException;
-import com.techelevator.model.User;
+import com.jeffcrosley.authentication.AuthProvider;
+import com.jeffcrosley.authentication.JwtTokenHandler;
+import com.jeffcrosley.authentication.UnauthorizedException;
+import com.jeffcrosley.authentication.UserCreationException;
+import com.jeffcrosley.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;

@@ -1,4 +1,4 @@
-package com.techelevator.authentication;
+package com.jeffcrosley.authentication;
 
 import java.security.Key;
 import java.security.NoSuchAlgorithmException;

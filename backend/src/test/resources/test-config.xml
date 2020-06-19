@@ -17,7 +17,7 @@
 
 	<!-- The component-scan tag tells Spring to search the package tree specified 
 		looking for classes that bear Spring annotations like @Controller -->
-	<context:component-scan base-package="com.techelevator" />
+	<context:component-scan base-package="com.jeffcrosley" />
 
     <!-- ************************* -->
     <!-- DATA ACCESS CONFIGURATION -->

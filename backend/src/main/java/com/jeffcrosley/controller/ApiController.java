@@ -1,4 +1,4 @@
-package com.techelevator.controller;
+package com.jeffcrosley.controller;
 
 import java.util.List;
 
@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.techelevator.authentication.AuthProvider;
-import com.techelevator.authentication.UnauthorizedException;
-import com.techelevator.model.Game;
-import com.techelevator.model.GameDao;
-import com.techelevator.model.User;
-import com.techelevator.model.UserDao;
+import com.jeffcrosley.authentication.AuthProvider;
+import com.jeffcrosley.authentication.UnauthorizedException;
+import com.jeffcrosley.model.Game;
+import com.jeffcrosley.model.GameDao;
+import com.jeffcrosley.model.User;
+import com.jeffcrosley.model.UserDao;
 
 /**
  * ApiController

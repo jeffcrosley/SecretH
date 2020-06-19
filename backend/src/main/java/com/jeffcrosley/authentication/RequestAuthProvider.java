@@ -1,14 +1,14 @@
-package com.techelevator.authentication;
+package com.jeffcrosley.authentication;
 
 import java.util.Arrays;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.techelevator.model.User;
-import com.techelevator.model.UserDao;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.jeffcrosley.model.User;
+import com.jeffcrosley.model.UserDao;
 
 /**
  * RequestAuthProvider

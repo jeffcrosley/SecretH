@@ -1,17 +1,17 @@
-package com.techelevator.model;
+package com.jeffcrosley.model;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
 
-import com.techelevator.authentication.PasswordHasher;
-
 import org.bouncycastle.util.encoders.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
+
+import com.jeffcrosley.authentication.PasswordHasher;
 
 @Component
 public class JdbcUserDao implements UserDao {

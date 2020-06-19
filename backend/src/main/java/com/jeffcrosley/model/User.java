@@ -1,4 +1,4 @@
-package com.techelevator.model;
+package com.jeffcrosley.model;
 
 import javax.validation.constraints.AssertTrue;
 

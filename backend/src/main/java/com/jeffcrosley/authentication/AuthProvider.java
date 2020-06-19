@@ -1,6 +1,6 @@
-package com.techelevator.authentication;
+package com.jeffcrosley.authentication;
 
-import com.techelevator.model.User;
+import com.jeffcrosley.model.User;
 
 public interface AuthProvider {
     /**

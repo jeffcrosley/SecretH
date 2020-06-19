@@ -1,4 +1,4 @@
-package com.techelevator.model;
+package com.jeffcrosley.model;
 
 import static java.lang.Math.toIntExact;
 
