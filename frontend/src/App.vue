@@ -18,10 +18,7 @@ export default {
   name: 'app',
   data() {
     return {
-      currentUser: {
-        username: '',
-        id: ''
-      }
+      currentUser: null
     }
   },
   methods: {
@@ -37,8 +34,7 @@ export default {
         return response.json();
       })
       .then((currentUser) => {
-        this.currentUser.username = currentUser.username;
-        this.currentUser.id = currentUser.id;
+        this.currentUser = currentUser;
       });
 
     },

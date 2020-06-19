@@ -4,6 +4,7 @@
     <p>Your name is {{currentUser.username}}</p>
     <p>You must be authenticated to see this</p>
     <p v-if="this.currentUser.role == 'admin'">You must be an administrator to see this</p>
+    <register v-if="this.currentUser.role == 'admin'"></register>
     <game-list title="Active Games" :games="activeGames" :currentUser="currentUser"></game-list>
 
   </div>
@@ -11,6 +12,7 @@
 
 <script>
 import GameList from '@/components/GameList'
+import Register from '@/components/Register'
 import auth from '../auth'
 import api from '../api'
 
@@ -18,7 +20,8 @@ export default {
   name: 'home',
   props: ['currentUser'],
   components: {
-    GameList
+    GameList,
+    Register
   },
   data() {
     return {

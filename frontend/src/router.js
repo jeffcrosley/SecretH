@@ -3,7 +3,6 @@ import Router from 'vue-router'
 import auth from './auth'
 import Home from './views/Home.vue'
 import Login from './views/Login.vue'
-import Register from './views/Register.vue'
 import Lobby from './views/Lobby.vue'
 import Game from './views/Game.vue'
 
@@ -34,14 +33,6 @@ const router = new Router({
       path: "/login",
       name: "login",
       component: Login,
-      meta: {
-        requiresAuth: false
-      }
-    },
-    {
-      path: "/register",
-      name: "register",
-      component: Register,
       meta: {
         requiresAuth: false
       }
