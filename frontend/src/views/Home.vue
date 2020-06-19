@@ -46,6 +46,11 @@ export default {
       });
     }
   },
+  watch: {
+    currentUser: function() {
+      this.getActiveGames();
+    }
+  },
   created() {
     this.getActiveGames();
   }

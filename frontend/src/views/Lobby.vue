@@ -3,7 +3,7 @@
     <h1>Game Lobby</h1>
     <new-game :currentUser="currentUser" @newGame="populateGames"></new-game>
     <game-list title="Open Games" :games="openGames" :currentUser="currentUser" @joinGame="populateGames"></game-list>
-    <game-list title="Pending Games" :games="pendingGames"></game-list>
+    <game-list title="Pending Games" :games="pendingGames" :currentUser="currentUser"></game-list>
   </div>
 </template>
 
@@ -52,9 +52,12 @@ export default {
       });
     }
   },
+  watch: {
+    currentUser: function() {
+      this.populateGames();
+    }
+  },
   created() {
-      this.currentUser = this.$parent.currentUser;
-
       this.populateGames();
   }
 }
