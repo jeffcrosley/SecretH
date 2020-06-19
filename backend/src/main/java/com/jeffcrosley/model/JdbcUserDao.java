@@ -142,4 +142,17 @@ public class JdbcUserDao implements UserDao {
 
         return players;
     }
+
+	@Override
+	public String secretRole(Long gameId, Long userId) {
+		String secretRole = "";
+		
+		String sqlSecretRole = "SELECT secret_role FROM users_game WHERE game_id = ? AND user_id = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSecretRole, gameId, userId);
+		if (results.next()) {
+			secretRole = results.getString("secret_role");
+		}
+		
+		return secretRole;
+	}
 }

@@ -38,5 +38,7 @@ public interface UserDao {
     public User getUserByUsername(String username);
 
     public List<User> getUsersInGame(Long gameId);
+    
+    public String secretRole(Long gameId, Long userId);
 
 }

@@ -46,6 +46,12 @@ public class ApiController {
         return userDao.getUserByUsername(username);
     }
     
+    /*READ A USER'S SECRET ROLE IN A GIVEN GAME*/
+    @GetMapping("/userRole/{gameId}/{userId}")
+    public String secretRole(@PathVariable Long gameId, @PathVariable Long userId) {
+    	return userDao.secretRole(gameId, userId);
+    }
+    
     /////////////////////////////////////////////////////
     ////////////////////     GAMES     /////////////////
     /////////////////////////////////////////////////////    
