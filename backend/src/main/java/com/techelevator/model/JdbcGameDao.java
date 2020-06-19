@@ -93,6 +93,7 @@ public class JdbcGameDao implements GameDao {
 					+ "(SELECT game_id "
 					+ "FROM users_game "
 					+ "WHERE user_id = ?) "
+				+ "AND game.president IS NULL "
 				+ "ORDER BY game.game_id";
 		
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetOpenGames, userId);
@@ -111,7 +112,7 @@ public class JdbcGameDao implements GameDao {
 		String sqlGetPendingGames = "SELECT game.* "
 									+ "FROM game "
 									+ "INNER JOIN users_game ON (game.game_id = users_game.game_id) "
-									+ "WHERE users_game.user_id = ? "
+									+ "WHERE users_game.user_id = ? AND game.president IS NULL "
 									+ "ORDER BY game.game_id";
 		
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetPendingGames, userId);
