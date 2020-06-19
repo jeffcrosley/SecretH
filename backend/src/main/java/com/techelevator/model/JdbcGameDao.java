@@ -83,6 +83,25 @@ public class JdbcGameDao implements GameDao {
 	}
 	
 	@Override
+	public List<Game> getActiveGames(Long userId) {
+		List<Game> activeGames = new ArrayList<Game>();
+
+		String sqlGetActiveGames = "SELECT game.* "
+				+ "FROM game "
+				+ "INNER JOIN users_game ON (game.game_id = users_game.game_id) "
+				+ "WHERE users_game.user_id = ? AND game.president IS NOT NULL "
+				+ "ORDER BY game.game_id";
+		
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetActiveGames, userId);
+		while(results.next()) {
+			Game theGame = mapRowSetToGame(results);
+			activeGames.add(theGame);
+		}		
+		
+		return activeGames;
+	}
+
+	@Override
 	public List<Game> getOpenGames(Long userId) {
 		List<Game> openGames = new ArrayList<Game>();
 		

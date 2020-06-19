@@ -72,6 +72,12 @@ public class ApiController {
     	return gameDao.getAllGames();
     }
     
+    /*GET ACTIVE GAMES*/
+    @GetMapping("/activeGames/{userId}")
+    public List<Game> activeGames(@PathVariable Long userId) {
+    	return gameDao.getActiveGames(userId);
+    }
+    
     /*GET OPEN GAMES*/
     @GetMapping("/openGames/{userId}")
     public List<Game> openGames(@PathVariable Long userId) {
