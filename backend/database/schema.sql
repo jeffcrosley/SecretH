@@ -27,7 +27,7 @@ CREATE TABLE users_game
 (
   user_id int not null,
   game_id int not null,
-  secret_role int,
+  secret_role varchar(15),
   alive boolean not null default(true),
   
   constraint fk_users_game_users foreign key (user_id) references users (id),

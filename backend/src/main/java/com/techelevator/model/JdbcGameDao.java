@@ -3,7 +3,10 @@ package com.techelevator.model;
 import static java.lang.Math.toIntExact;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.sql.DataSource;
 
@@ -131,7 +134,26 @@ public class JdbcGameDao implements GameDao {
 
 		jdbcTemplate.update(sqlAssignPresident, presidentId, gameId);
 
-		// TODO: ASSIGN SECRET ROLES
+		// ASSIGN SECRET ROLES
+		Integer numberOfPlayers = getPlayerIds(gameId).size();
+		
+		List<Long> playerIds = getPlayerIds(gameId);
+		List<String> roles = getRoles(gameId);
+		
+		Map<Long, String> assignments = new HashMap<Long, String>();
+		
+		for (int i = 0; i < numberOfPlayers; i++) {
+			assignments.put(playerIds.get(i), roles.get(i));
+		}
+		
+		String sqlAssignRole = "UPDATE users_game SET secret_role = ? "
+								+ "WHERE user_id = ? AND game_id = ?";
+		
+		for (Map.Entry<Long, String> player : assignments.entrySet()) {
+			Long userId = player.getKey();
+			String secretRole = player.getValue();
+			jdbcTemplate.update(sqlAssignRole, secretRole, userId, gameId);
+		}
 		
 	}
 
@@ -165,6 +187,41 @@ public class JdbcGameDao implements GameDao {
 		}
 
 		return playerIds;
+	}
+	
+	private List<String> getRoles(Long gameId) {
+		Integer numberOfPlayers = getPlayerIds(gameId).size();
+		List<String> roles = new ArrayList<String>();
+		
+		roles.add("Big Bad Wolf");
+		roles.add("Wolf");
+		roles.add("Sheep");
+		roles.add("Sheep");
+		roles.add("Sheep");
+		
+		if (numberOfPlayers >= 6) {
+			roles.add("Sheep");
+		} 
+		
+		if (numberOfPlayers >= 7) {
+			roles.add("Wolf");
+		} 
+		
+		if (numberOfPlayers >= 8) {
+			roles.add("Sheep");
+		} 
+		
+		if (numberOfPlayers >= 9) {
+			roles.add("Wolf");
+		} 
+		
+		if (numberOfPlayers == 10) {
+			roles.add("Sheep");
+		}
+		
+		Collections.shuffle(roles);
+		
+		return roles;
 	}
 	
     private Game mapRowSetToGame(SqlRowSet results) {
