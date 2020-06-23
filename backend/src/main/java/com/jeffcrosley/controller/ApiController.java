@@ -46,6 +46,12 @@ public class ApiController {
         return userDao.getUserByUsername(username);
     }
     
+    /*READ A USER BY USERNAME*/
+    @GetMapping("/userId/{userId}")
+    public User userByUsername(@PathVariable Long userId) {
+    	return userDao.getUserById(userId);
+    }
+    
     /*READ A USER'S SECRET ROLE IN A GIVEN GAME*/
     @GetMapping("/userRole/{gameId}/{userId}")
     public String secretRole(@PathVariable Long gameId, @PathVariable Long userId) {
@@ -55,6 +61,12 @@ public class ApiController {
     /////////////////////////////////////////////////////
     ////////////////////     GAMES     /////////////////
     /////////////////////////////////////////////////////    
+    
+    /*GET A GAME BY ID*/
+    @GetMapping("/game/{gameId}")
+    public Game getGame(@PathVariable Long gameId) {
+    	return gameDao.getGameById(gameId);
+    }
     
     /*CREATE A NEW GAME*/
     @PostMapping("/game/{creatorId}")

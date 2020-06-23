@@ -1,6 +1,12 @@
 <template>
   <div id="game">
-      GAME {{currentPlayerRole}}
+      {{currentGame.name}} / 
+      Your Role: {{currentPlayerRole}} / 
+      {{currentGame.numberOfPlayers}} Players / 
+      {{currentGame.sheepPolicies}} Sheep Policies /
+      {{currentGame.wolfPolicies}} Wolf Policies /
+      President: {{currentGame.president}} / 
+      Chancellor: {{currentGame.chancellor}}
   </div>
 </template>
 
@@ -30,6 +36,14 @@ export default {
         })
         .then((userRole) => {
           this.currentPlayerRole = userRole;
+        });
+
+        fetch(`${process.env.VUE_APP_REMOTE_API}/game/${gameId}`, fetchConfigGet)
+        .then((response) => {
+          return response.json();
+        })
+        .then((game) => {
+          this.currentGame = game;
         });
       }
 

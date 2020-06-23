@@ -4,6 +4,7 @@
       <router-link to="/">Home</router-link>
       <router-link to="/lobby">Game Lobby</router-link>
       <a v-on:click="logOut">Log Out</a>
+      <p>{{currentUser.username}}</p>
     </div>
     <router-view :currentUser="currentUser" @loggedIn="loggedIn"/>
     Icons made by <a href="http://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>

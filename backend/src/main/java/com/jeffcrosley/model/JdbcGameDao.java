@@ -26,6 +26,22 @@ public class JdbcGameDao implements GameDao {
     }
 
 	@Override
+	public Game getGameById(Long gameId) {
+		Game theGame = new Game();
+		
+		String sqlGetGameById = "SELECT * " + 
+				"FROM game " + 
+				"WHERE game_id = ?";
+		
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetGameById, gameId);
+		while (results.next()) {
+			theGame = mapRowSetToGame(results);
+		}
+		
+		return theGame;
+	}
+
+	@Override
 	public void createGame(Long creatorId, String name, Integer numberOfPlayers) {
 	    	
         String sqlInsertNewGame = "INSERT INTO game "
@@ -260,5 +276,6 @@ public class JdbcGameDao implements GameDao {
         
         return theGame;
     }
+
 
 }

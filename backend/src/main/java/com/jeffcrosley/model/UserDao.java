@@ -34,6 +34,8 @@ public interface UserDao {
      * @return a List of user objects
      */
     public List<User> getAllUsers();
+    
+    public User getUserById(Long userId);
 
     public User getUserByUsername(String username);
 

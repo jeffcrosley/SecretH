@@ -5,6 +5,7 @@ import java.util.List;
 public interface GameDao {
 
 	public List<Game> getAllGames();
+	public Game getGameById(Long gameId);
 	public List<Game> getActiveGames(Long userId);
 	public List<Game> getOpenGames(Long userId);
 	public List<Game> getPendingGames(Long userId);
