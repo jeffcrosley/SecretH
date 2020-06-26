@@ -1,6 +1,5 @@
 <template>
-  <div class="lobby">
-    <h1>Game Lobby</h1>
+  <div id="lobby">
     <new-game :currentUser="currentUser" @newGame="populateGames"></new-game>
     <game-list title="Open Games" :games="openGames" :currentUser="currentUser" @joinGame="populateGames"></game-list>
     <game-list title="Pending Games" :games="pendingGames" :currentUser="currentUser"></game-list>
@@ -61,3 +60,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+#lobby > * {
+  margin: 2rem;
+}
+</style>

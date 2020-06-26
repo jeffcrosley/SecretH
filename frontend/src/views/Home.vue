@@ -1,12 +1,7 @@
 <template>
-  <div class="home">
-    <h1>Home</h1>
-    <p>Your name is {{currentUser.username}}</p>
-    <p>You must be authenticated to see this</p>
-    <p v-if="this.currentUser.role == 'admin'">You must be an administrator to see this</p>
-    <register v-if="this.currentUser.role == 'admin'"></register>
+  <div id="home">
     <game-list title="Active Games" :games="activeGames" :currentUser="currentUser"></game-list>
-
+    <register v-if="this.currentUser.role == 'admin'"></register>
   </div>
 </template>
 
@@ -54,3 +49,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+#home > * {
+  margin: 2rem;
+}
+</style>
