@@ -58,6 +58,12 @@ public class ApiController {
     	return userDao.secretRole(gameId, userId);
     }
     
+    /*READ ALL USERS IN A GIVEN GAME*/
+    @GetMapping("/usersInGame/{gameId}")
+    public List<User> usersInGame(@PathVariable Long gameId) {
+    	return userDao.getUsersInGame(gameId);
+    }
+    
     /////////////////////////////////////////////////////
     ////////////////////     GAMES     /////////////////
     /////////////////////////////////////////////////////    

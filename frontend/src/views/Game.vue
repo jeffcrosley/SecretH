@@ -1,5 +1,6 @@
 <template>
   <div id="game">
+    <div class="game__info">
       {{currentGame.name}} / 
       Your Role: {{currentPlayerRole}} / 
       Players: {{currentGame.numberOfPlayers}} / 
@@ -7,19 +8,26 @@
       Wolf Policies: {{currentGame.wolfPolicies}} /
       President: {{currentGame.presidentName}} / 
       Chancellor: {{currentGame.chancellorName}}
+    </div>
+    <nomination-list v-if="currentUser.id == currentGame.presidentId" :currentUser="currentUser"></nomination-list>
   </div>
 </template>
 
 <script>
+import NominationList from '@/components/NominationList'
 import auth from '../auth'
 import api from '../api'
 
 export default {
     name: 'game',
+    components: {
+      NominationList
+    },
     props: ['currentUser'],
     data() {
       return {
         currentGame: null,
+        playersInGame: null,
         currentPlayerRole: ''
       }
     },
@@ -65,6 +73,14 @@ export default {
         .catch((reason) => {
           console.log("Something went wrong with the fetches: " + reason);
         });
+
+        fetch(`${process.env.VUE_APP_REMOTE_API}/usersInGame/${gameId}`, fetchConfigGet)
+        .then((response) => {
+          return response.json();
+        })
+        .then((players) => {
+          this.playersInGame = players;
+        });
       }
     },
     created() {
@@ -73,6 +89,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+#game > * {
+  margin: 2rem;
+}
 </style>

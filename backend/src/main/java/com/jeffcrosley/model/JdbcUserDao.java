@@ -143,7 +143,17 @@ public class JdbcUserDao implements UserDao {
     public List<User> getUsersInGame(Long gameId) {
         List<User> players = new ArrayList<User>();
 
-
+        String sqlSelectAllUsersInGame = "SELECT users.* " + 
+        		"FROM users " + 
+        		"INNER JOIN users_game ON (users.id = users_game.user_id) " + 
+        		"INNER JOIN game ON (users_game.game_id = game.game_id) " +
+        		"WHERE game.game_id = ?";
+        
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectAllUsersInGame, gameId);
+        while (results.next()) {
+        	User thePlayer = mapResultToUser(results);
+        	players.add(thePlayer);
+        }
 
         return players;
     }
