@@ -170,7 +170,6 @@ public class JdbcUserDao implements UserDao {
 		
 		return secretRole;
 	}
-	
 
     private User mapResultToUser(SqlRowSet results) {
         User user = new User();
@@ -179,5 +178,4 @@ public class JdbcUserDao implements UserDao {
         user.setRole(results.getString("role"));
         return user;
     }
-
 }

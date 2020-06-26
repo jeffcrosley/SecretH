@@ -38,7 +38,11 @@ export default {
             });
         },
         nominate(nomineeId) {
-            console.log(nomineeId);
+            const authToken = auth.getToken();
+            const fetchConfigPut = api.fetchConfigPut(authToken);
+            const gameId = this.$route.params.gameId;
+
+            fetch(`${process.env.VUE_APP_REMOTE_API}/nominateChancellor/${gameId}/${nomineeId}`, fetchConfigPut);            
         }
     },
     created() {

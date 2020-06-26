@@ -33,14 +33,9 @@ public interface UserDao {
      * Get all of the users from the database.
      * @return a List of user objects
      */
-    public List<User> getAllUsers();
-    
+    public List<User> getAllUsers();    
     public User getUserById(Long userId);
-
     public User getUserByUsername(String username);
-
-    public List<User> getUsersInGame(Long gameId);
-    
+    public List<User> getUsersInGame(Long gameId);    
     public String secretRole(Long gameId, Long userId);
-
 }

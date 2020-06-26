@@ -11,5 +11,6 @@ public interface GameDao {
 	public List<Game> getPendingGames(Long userId);
 	public void joinGame(Long gameId, Long userId);
 	public void createGame(Long creatorId, String name, Integer numberOfPlayers);
+	public void nominateChancellor(Long gameId, Long chancellorId);
 	
 }

@@ -158,6 +158,15 @@ public class JdbcGameDao implements GameDao {
 		
 		return pendingGames;
 	}
+
+	@Override
+	public void nominateChancellor(Long gameId, Long chancellorId) {
+		String sqlNominateChancellor = "UPDATE game SET chancellor = ? " + 
+				"WHERE game_id = ?";
+		
+		jdbcTemplate.update(sqlNominateChancellor, chancellorId, gameId);
+		
+	}	
 	
 	private void startGame(Long gameId) {
 

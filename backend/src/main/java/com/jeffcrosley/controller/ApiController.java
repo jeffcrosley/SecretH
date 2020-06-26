@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -112,6 +113,12 @@ public class ApiController {
     @GetMapping("/pendingGames/{userId}")
     public List<Game> pendingGames(@PathVariable Long userId) {
     	return gameDao.getPendingGames(userId);
+    }
+    
+    /*NOMINATE A CHANCELLOR*/
+    @PutMapping("/nominateChancellor/{gameId}/{chancellorId}")
+    public void nominateChancellor(@PathVariable Long gameId, @PathVariable Long chancellorId) {
+    	gameDao.nominateChancellor(gameId, chancellorId);
     }
 
     

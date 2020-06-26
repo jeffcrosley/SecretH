@@ -19,6 +19,14 @@ export default {
             },
             body: JSON.stringify(this.game)
         }
-    }
+    },
 
+    fetchConfigPut(authToken) {
+        return {
+            method: 'PUT',
+            headers: {
+                Authorization: `Bearer ${authToken}`
+            }
+        }
+    },
 }
