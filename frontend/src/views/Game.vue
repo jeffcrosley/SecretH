@@ -1,15 +1,16 @@
 <template>
-  <div id="game">
+  <div id="game" v-if="playersInGame">
     <div class="game__info">
-      {{currentGame.name}} / 
-      Your Role: {{currentPlayerRole}} / 
-      Players: {{currentGame.numberOfPlayers}} / 
-      Sheep Policies: {{currentGame.sheepPolicies}} /
-      Wolf Policies: {{currentGame.wolfPolicies}} /
-      President: {{currentGame.presidentName}} / 
-      Chancellor: {{currentGame.chancellorName}}
+      <p>{{currentGame.name}}</p>
+      <p>Your Role: {{currentPlayerRole}}</p>
+      <p>Players: {{currentGame.numberOfPlayers}}</p>
+      <p>Sheep Policies: {{currentGame.sheepPolicies}}</p>
+      <p>Wolf Policies: {{currentGame.wolfPolicies}}</p>
+      <p>President: {{currentGame.presidentName}}</p>
+      <p>Chancellor: {{currentGame.chancellorName}}</p>
+      <p>Chancellor Nominee: {{currentGame.nomineeName}}</p>
     </div>
-    <nomination-list v-if="currentUser.id == currentGame.presidentId" :currentUser="currentUser"></nomination-list>
+    <nomination-list v-if="currentUser.id == currentGame.presidentId && currentGame.nomineeName == null" :currentUser="currentUser" @nomination="gameSetup"></nomination-list>
   </div>
 </template>
 
@@ -39,6 +40,7 @@ export default {
         const userId = this.$props.currentUser.id;
         let presidentId = null;
         let chancellorId = null;
+        let nomineeId = null;
 
         fetch(`${process.env.VUE_APP_REMOTE_API}/userRole/${gameId}/${userId}`, fetchConfigGet)
         .then((response) => {
@@ -69,12 +71,16 @@ export default {
         })
         .then((chancellor) => {
           this.currentGame.chancellorName = chancellor.username;
+          nomineeId = this.currentGame.nomineeId;
+          return fetch(`${process.env.VUE_APP_REMOTE_API}/userId/${nomineeId}`, fetchConfigGet)
         })
-        .catch((reason) => {
-          console.log("Something went wrong with the fetches: " + reason);
-        });
-
-        fetch(`${process.env.VUE_APP_REMOTE_API}/usersInGame/${gameId}`, fetchConfigGet)
+        .then((response) => {
+          return response.json();
+        })
+        .then((nominee) => {
+          this.currentGame.nomineeName = nominee.username;
+          return fetch(`${process.env.VUE_APP_REMOTE_API}/usersInGame/${gameId}`, fetchConfigGet)
+        })
         .then((response) => {
           return response.json();
         })
@@ -89,7 +95,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 #game > * {
   margin: 2rem;
 }

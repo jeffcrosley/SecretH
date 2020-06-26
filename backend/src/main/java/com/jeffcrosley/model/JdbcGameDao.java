@@ -161,7 +161,7 @@ public class JdbcGameDao implements GameDao {
 
 	@Override
 	public void nominateChancellor(Long gameId, Long chancellorId) {
-		String sqlNominateChancellor = "UPDATE game SET chancellor = ? " + 
+		String sqlNominateChancellor = "UPDATE game SET chancellor_nominee = ? " + 
 				"WHERE game_id = ?";
 		
 		jdbcTemplate.update(sqlNominateChancellor, chancellorId, gameId);
@@ -275,15 +275,26 @@ public class JdbcGameDao implements GameDao {
         theGame.setGameId(results.getLong("game_id"));
         theGame.setName(results.getString("name"));
         theGame.setNumberOfPlayers(toIntExact(results.getLong("number_of_players")));
+        theGame.setSheepPolicies(results.getLong("sheep_policies"));
+        theGame.setWolfPolicies(results.getLong("wolf_policies"));        
         theGame.setPresidentId(results.getLong("president"));
-        theGame.setPresidentName("");
+        Long lastPresident = results.getLong("last_president");
+        if (lastPresident != null) {
+        	theGame.setLastPresidentId(lastPresident);
+        }
         Long chancellor = results.getLong("chancellor");
         if (chancellor != null) {
         	theGame.setChancellorId(chancellor);
         }
-        theGame.setChancellorName("");
-        theGame.setSheepPolicies(results.getLong("sheep_policies"));
-        theGame.setWolfPolicies(results.getLong("wolf_policies"));        
+        Long lastChancellor = results.getLong("last_chancellor");
+        if (lastChancellor != null) {
+        	theGame.setLastChancellorId(lastChancellor);
+        }
+        Long nominee = results.getLong("chancellor_nominee");
+        if (nominee != null) {
+        	theGame.setNomineeId(nominee);
+        }        
+        theGame.setFailures(results.getLong("election_failures"));
         
         return theGame;
     }

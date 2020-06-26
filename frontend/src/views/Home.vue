@@ -39,18 +39,13 @@ export default {
       });
     }
   },
-  watch: {
-    currentUser: function() {
-      this.getActiveGames();
-    }
-  },
   created() {
     this.getActiveGames();
   }
 }
 </script>
 
-<style scoped>
+<style>
 #home > * {
   margin: 2rem;
 }

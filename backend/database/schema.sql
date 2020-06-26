@@ -19,8 +19,12 @@ CREATE TABLE game
 	number_of_players int NOT NULL,
 	sheep_policies int NOT NULL default(0),
 	wolf_policies int NOT NULL default(0),
-  president varchar(255),
-  chancellor varchar(255)
+  president int,
+  last_president int,
+  chancellor int,
+  last_chancellor int,
+  chancellor_nominee int,
+  election_failures int NOT NULL default(0)
 );
 
 CREATE TABLE users_game

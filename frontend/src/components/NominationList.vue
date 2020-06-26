@@ -42,7 +42,10 @@ export default {
             const fetchConfigPut = api.fetchConfigPut(authToken);
             const gameId = this.$route.params.gameId;
 
-            fetch(`${process.env.VUE_APP_REMOTE_API}/nominateChancellor/${gameId}/${nomineeId}`, fetchConfigPut);            
+            fetch(`${process.env.VUE_APP_REMOTE_API}/nominateChancellor/${gameId}/${nomineeId}`, fetchConfigPut)
+            .then(
+                this.$emit('nomination')
+            );
         }
     },
     created() {

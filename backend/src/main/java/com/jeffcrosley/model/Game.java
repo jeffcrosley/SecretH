@@ -8,10 +8,12 @@ public class Game {
     private Long sheepPolicies;
     private Long wolfPolicies;
     private Long presidentId;
-    private String presidentName;
+    private Long lastPresidentId;
     private Long chancellorId;
-    private String chancellorName;
-
+    private Long lastChancellorId;
+    private Long nomineeId;
+    private Long failures;
+    
 	public Long getGameId() {
 		return gameId;
 	}
@@ -60,12 +62,12 @@ public class Game {
 		this.presidentId = presidentId;
 	}
 
-	public String getPresidentName() {
-		return presidentName;
+	public Long getLastPresidentId() {
+		return lastPresidentId;
 	}
 
-	public void setPresidentName(String presidentName) {
-		this.presidentName = presidentName;
+	public void setLastPresidentId(Long lastPresidentId) {
+		this.lastPresidentId = lastPresidentId;
 	}
 
 	public Long getChancellorId() {
@@ -76,12 +78,28 @@ public class Game {
 		this.chancellorId = chancellorId;
 	}
 
-	public String getChancellorName() {
-		return chancellorName;
+	public Long getLastChancellorId() {
+		return lastChancellorId;
 	}
 
-	public void setChancellorName(String chancellorName) {
-		this.chancellorName = chancellorName;
+	public void setLastChancellorId(Long lastChancellorId) {
+		this.lastChancellorId = lastChancellorId;
+	}
+
+	public Long getNomineeId() {
+		return nomineeId;
+	}
+
+	public void setNomineeId(Long nomineeId) {
+		this.nomineeId = nomineeId;
+	}
+
+	public Long getFailures() {
+		return failures;
+	}
+
+	public void setFailures(Long failures) {
+		this.failures = failures;
 	}
 
 	public Game() {
