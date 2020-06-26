@@ -1,13 +1,15 @@
 <template>
   <div id="app">
-    <div id="nav">
+    <header id="nav">
       <router-link to="/">Home</router-link>
       <router-link to="/lobby">Game Lobby</router-link>
       <a v-on:click="logOut">Log Out</a>
-      <p>{{currentUser.username}}</p>
-    </div>
+      <p v-if="this.currentUser != null">{{currentUser.username}}</p>
+    </header>
     <router-view :currentUser="currentUser" @loggedIn="loggedIn"/>
+    <footer id="footer">
     Icons made by <a href="http://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+    </footer>
   </div>
 </template>
 
@@ -24,7 +26,6 @@ export default {
   },
   methods: {
     loggedIn() {
-
       const username = auth.getUser().sub;
       const authToken = auth.getToken();
       const fetchConfigGet = api.fetchConfigGet(authToken);
@@ -52,11 +53,29 @@ export default {
 
 <style>
 
+*,
+*::before,
+*::after {  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#app {
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 #nav {
   width: 100;
   
   display: flex;
   justify-content: space-evenly;
 }
+
+
 
 </style>

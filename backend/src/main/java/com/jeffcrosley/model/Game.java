@@ -7,8 +7,10 @@ public class Game {
     private Integer numberOfPlayers;
     private Long sheepPolicies;
     private Long wolfPolicies;
-    private Long president;
-    private Long chancellor;
+    private Long presidentId;
+    private String presidentName;
+    private Long chancellorId;
+    private String chancellorName;
 
 	public Long getGameId() {
 		return gameId;
@@ -16,8 +18,8 @@ public class Game {
 
 	public void setGameId(Long gameId) {
 		this.gameId = gameId;
-	}        
-    
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -50,20 +52,36 @@ public class Game {
 		this.wolfPolicies = wolfPolicies;
 	}
 
-	public Long getPresident() {
-		return president;
+	public Long getPresidentId() {
+		return presidentId;
 	}
 
-	public void setPresident(Long president) {
-		this.president = president;
+	public void setPresidentId(Long presidentId) {
+		this.presidentId = presidentId;
 	}
 
-	public Long getChancellor() {
-		return chancellor;
+	public String getPresidentName() {
+		return presidentName;
 	}
 
-	public void setChancellor(Long chancellor) {
-		this.chancellor = chancellor;
+	public void setPresidentName(String presidentName) {
+		this.presidentName = presidentName;
+	}
+
+	public Long getChancellorId() {
+		return chancellorId;
+	}
+
+	public void setChancellorId(Long chancellorId) {
+		this.chancellorId = chancellorId;
+	}
+
+	public String getChancellorName() {
+		return chancellorName;
+	}
+
+	public void setChancellorName(String chancellorName) {
+		this.chancellorName = chancellorName;
 	}
 
 	public Game() {

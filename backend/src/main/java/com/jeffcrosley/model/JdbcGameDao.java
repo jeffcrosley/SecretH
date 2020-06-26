@@ -266,11 +266,13 @@ public class JdbcGameDao implements GameDao {
         theGame.setGameId(results.getLong("game_id"));
         theGame.setName(results.getString("name"));
         theGame.setNumberOfPlayers(toIntExact(results.getLong("number_of_players")));
-        theGame.setPresident(results.getLong("president"));
+        theGame.setPresidentId(results.getLong("president"));
+        theGame.setPresidentName("");
         Long chancellor = results.getLong("chancellor");
         if (chancellor != null) {
-        	theGame.setChancellor(chancellor);
+        	theGame.setChancellorId(chancellor);
         }
+        theGame.setChancellorName("");
         theGame.setSheepPolicies(results.getLong("sheep_policies"));
         theGame.setWolfPolicies(results.getLong("wolf_policies"));        
         
