@@ -2,9 +2,9 @@
   <div id="game">
       {{currentGame.name}} / 
       Your Role: {{currentPlayerRole}} / 
-      {{currentGame.numberOfPlayers}} Players / 
-      {{currentGame.sheepPolicies}} Sheep Policies /
-      {{currentGame.wolfPolicies}} Wolf Policies /
+      Players: {{currentGame.numberOfPlayers}} / 
+      Sheep Policies: {{currentGame.sheepPolicies}} /
+      Wolf Policies: {{currentGame.wolfPolicies}} /
       President: {{currentGame.presidentName}} / 
       Chancellor: {{currentGame.chancellorName}}
   </div>
@@ -28,7 +28,9 @@ export default {
         const authToken = auth.getToken();
         const fetchConfigGet = api.fetchConfigGet(authToken);
         const gameId = this.$route.params.gameId;
-        const userId = this.currentUser.id;
+        const userId = this.$props.currentUser.id;
+        let presidentId = null;
+        let chancellorId = null;
 
         fetch(`${process.env.VUE_APP_REMOTE_API}/userRole/${gameId}/${userId}`, fetchConfigGet)
         .then((response) => {
@@ -43,33 +45,30 @@ export default {
         })
         .then((game) => {
           this.currentGame = game;
-          return fetch(`${process.env.VUE_APP_REMOTE_API}/userId/${userId}`, fetchConfigGet)
+          presidentId = this.currentGame.presidentId;
+          return fetch(`${process.env.VUE_APP_REMOTE_API}/userId/${presidentId}`, fetchConfigGet)
         })
         .then((response) => {
           return response.json();
         })
         .then((president) => {
           this.currentGame.presidentName = president.username;
-          return fetch(`${process.env.VUE_APP_REMOTE_API}/userId/${this.currentGame.presidentId}`, fetchConfigGet)
+          chancellorId = this.currentGame.chancellorId;
+          return fetch(`${process.env.VUE_APP_REMOTE_API}/userId/${chancellorId}`, fetchConfigGet)
         })
         .then((response) => {
           return response.json();
         })
         .then((chancellor) => {
-          this.chancellorName = chancellor.username;
+          this.currentGame.chancellorName = chancellor.username;
         })
         .catch((reason) => {
           console.log("Something went wrong with the fetches: " + reason);
         });
       }
     },
-    watch: {
-      currentUser: function() {
-
-      }
-    },
     created() {
-      setTimeout(this.gameSetup(), 5000);
+      this.gameSetup();
     }
 }
 </script>

@@ -6,7 +6,7 @@
       <a v-on:click="logOut">Log Out</a>
       <p v-if="this.currentUser != null">{{currentUser.username}}</p>
     </header>
-    <router-view :currentUser="currentUser" @loggedIn="loggedIn"/>
+    <router-view v-if="currentUser" :currentUser="currentUser" @loggedIn="loggedIn"/>
     <footer id="footer">
     Icons made by <a href="http://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
     </footer>
