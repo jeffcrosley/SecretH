@@ -1,6 +1,7 @@
 <template>
-  <div id="ballot">
-      BALLOT
+  <div id="ballot" class="ballot">
+      <button class="ballot__button ballot__button--yes">APPROVE</button>
+      <button class="ballot__button ballot__button--no">REJECT</button>
   </div>
 </template>
 
@@ -10,6 +11,21 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+
+.ballot {
+
+  &__button {
+    color: white;
+
+    &--yes{
+      background-color: green;
+    }
+
+    &--no{
+      background-color: red;
+    }
+  }
+}
 
 </style>
