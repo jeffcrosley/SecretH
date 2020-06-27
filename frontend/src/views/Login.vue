@@ -55,26 +55,26 @@ export default {
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(this.user),
+        body: JSON.stringify(this.user)
       })
-        .then((response) => {
-          if (response.ok) {
-            return response.text();
-          } else {
-            this.invalidCredentials = true;
+      .then((response) => {
+        if (response.ok) {
+          return response.text();
+        } else {
+          this.invalidCredentials = true;
+        }
+      })
+      .then((token) => {
+        if (token != undefined) {
+          if (token.includes('"')) {
+            token = token.replace(/"/g, '');
           }
-        })
-        .then((token) => {
-          if (token != undefined) {
-            if (token.includes('"')) {
-              token = token.replace(/"/g, '');
-            }
-            auth.saveToken(token);
-            this.$emit("loggedIn");
-            this.$router.push('/');
-          }
-        })
-        .catch((err) => console.error(err));
+          auth.saveToken(token);
+          this.$emit("loggedIn");
+          this.$router.push('/');
+        }
+      })
+      .catch((err) => console.error(err));
     },
   },
 };

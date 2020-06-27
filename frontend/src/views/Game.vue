@@ -11,18 +11,21 @@
       <p>Chancellor Nominee: {{currentGame.nomineeName}}</p>
     </div>
     <nomination-list v-if="currentUser.id == currentGame.presidentId && currentGame.nomineeName == null" :currentUser="currentUser" @nomination="gameSetup"></nomination-list>
+    <ballot v-if="currentGame.nomineeName"></ballot>
   </div>
 </template>
 
 <script>
 import NominationList from '@/components/NominationList'
+import Ballot from '@/components/Ballot'
 import auth from '../auth'
 import api from '../api'
 
 export default {
     name: 'game',
     components: {
-      NominationList
+      NominationList,
+      Ballot
     },
     props: ['currentUser'],
     data() {

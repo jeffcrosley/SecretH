@@ -6,7 +6,7 @@
       <a v-on:click="logOut">Log Out</a>
       <p v-if="this.currentUser != null">{{currentUser.username}}</p>
     </header>
-    <router-view v-if="currentUser" :currentUser="currentUser" @loggedIn="loggedIn"/>
+    <router-view v-if="currentUser.id || this.$route.fullPath == '/login'" :currentUser="currentUser" @loggedIn="loggedIn"/>
     <footer id="footer">
     Icons made by <a href="http://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
     </footer>
@@ -21,7 +21,10 @@ export default {
   name: 'app',
   data() {
     return {
-      currentUser: null
+      currentUser: {
+        username: '',
+        id: null      
+      }
     }
   },
   methods: {
@@ -36,7 +39,8 @@ export default {
         return response.json();
       })
       .then((currentUser) => {
-        this.currentUser = currentUser;
+        this.currentUser.username = currentUser.username;
+        this.currentUser.id = currentUser.id;
       });
 
     },
