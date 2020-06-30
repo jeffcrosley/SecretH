@@ -65,6 +65,12 @@ public class ApiController {
     	return userDao.getUsersInGame(gameId);
     }
     
+    /*VOTE*/
+    @PutMapping("/vote/{gameId}/{userId}/{vote}")
+    public void vote(@PathVariable Long gameId, @PathVariable Long userId, @PathVariable boolean vote) {
+    	userDao.vote(vote, userId, gameId);
+    }
+    
     /////////////////////////////////////////////////////
     ////////////////////     GAMES     /////////////////
     /////////////////////////////////////////////////////    

@@ -18,10 +18,21 @@ public class User {
     @NotBlank(message = "Password is required")
     private String password;
     private String confirmPassword;
+    
+    private boolean vote;    
+
+    public boolean isVote() {
+		return vote;
+	}
+
+	public void setVote(boolean vote) {
+		this.vote = vote;
+	}
 
     // private boolean passwordMatching;
 
-    @AssertTrue(message = "Passwords must match")
+
+	@AssertTrue(message = "Passwords must match")
     public boolean isPasswordMatching() {
         if (password != null) {
             return password.equals(confirmPassword);

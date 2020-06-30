@@ -33,6 +33,7 @@ CREATE TABLE users_game
   game_id int not null,
   secret_role varchar(15),
   alive boolean not null default(true),
+  vote boolean,
   
   constraint fk_users_game_users foreign key (user_id) references users (id),
   constraint fk_users_game_game foreign key (game_id) references game (game_id)

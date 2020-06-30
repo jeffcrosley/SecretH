@@ -170,6 +170,16 @@ public class JdbcUserDao implements UserDao {
 		
 		return secretRole;
 	}
+	
+	@Override
+	public void vote(boolean vote, Long userId, Long gameId) {
+		String sqlVote = "UPDATE users_game SET vote = ?" + 
+				"WHERE user_id = ? AND game_id = ?";
+		
+		jdbcTemplate.update(sqlVote, vote, userId, gameId);
+		
+		// TODO: CHECK IF YOU'RE THE LAST VOTE AND PROCEED ACCORDINGLY
+	}
 
     private User mapResultToUser(SqlRowSet results) {
         User user = new User();

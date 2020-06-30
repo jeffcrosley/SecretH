@@ -11,7 +11,7 @@
       <p>Chancellor Nominee: {{currentGame.nomineeName}}</p>
     </div>
     <nomination-list v-if="currentUser.id == currentGame.presidentId && currentGame.nomineeName == null" :currentUser="currentUser" @nomination="gameSetup"></nomination-list>
-    <ballot v-if="currentGame.nomineeName"></ballot>
+    <ballot v-if="currentGame.nomineeName" :currentUser="currentUser"></ballot>
   </div>
 </template>
 
